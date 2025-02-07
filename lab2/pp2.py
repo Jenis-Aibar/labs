@@ -1,58 +1,42 @@
-# Python Dictionaries
-thisdict = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964
-}
-# Dictionary
-# Dictionaries are used to store data values in key:value pairs.
+# Python - Access Dictionary Items
+# Accessing Items
+# You can access the items of a dictionary by referring to its key name, inside square brackets:
 
-# A dictionary is a collection which is ordered*, changeable and do not allow duplicates.
-
-# As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
-
-# Dictionaries are written with curly brackets, and have keys and values:
-
-# Create and print a dictionary:
+# ExampleGet your own Python Server
+# Get the value of the "model" key:
 
 thisdict = {
   "brand": "Ford",
   "model": "Mustang",
   "year": 1964
 }
-print(thisdict)
-# Dictionary Items
-# Dictionary items are ordered, changeable, and do not allow duplicates.
+x = thisdict["model"]
+# There is also a method called get() that will give you the same result:
 
-# Dictionary items are presented in key:value pairs, and can be referred to by using the key name.
+# Example
+# Get the value of the "model" key:
 
-# Print the "brand" value of the dictionary:
+x = thisdict.get("model")
+# Get Keys
+# The keys() method will return a list of all the keys in the dictionary.
 
-thisdict = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964
+# Get a list of the keys:
+
+x = thisdict.keys()
+# The list of the keys is a view of the dictionary, meaning that any changes done to the dictionary will be reflected in the keys list.
+
+# Add a new item to the original dictionary, and see that the keys list gets updated as well:
+
+car = {
+"brand": "Ford",
+"model": "Mustang",
+"year": 1964
 }
-print(thisdict["brand"])
-# Ordered or Unordered?
-# As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
 
-# When we say that dictionaries are ordered, it means that the items have a defined order, and that order will not change.
+x = car.keys()
 
-# Unordered means that the items do not have a defined order, you cannot refer to an item by using an index.
+print(x) #before the change
 
-# Changeable
-# Dictionaries are changeable, meaning that we can change, add or remove items after the dictionary has been created.
+car["color"] = "white"
 
-# Duplicates Not Allowed
-# Dictionaries cannot have two items with the same key:
-
-# Duplicate values will overwrite existing values:
-
-thisdict = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964,
-  "year": 2020
-}
-print(thisdict)
+print(x) #after the change
