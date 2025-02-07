@@ -1,43 +1,78 @@
-# Python - Loop Lists
+# Python - List Comprehension
 
+# List Comprehension
+# List comprehension offers a shorter syntax when you want to create a new list based on the values of an existing list.
 
-# Loop Through a List
-# You can loop through the list items by using a for loop:
-# Print all items in the list, one by one:
+Example:
 
-thislist = ["apple", "banana", "cherry"]
-for x in thislist:
-  print(x)
-# Learn more about for loops in our Python For Loops Chapter.
+# Based on a list of fruits, you want a new list, containing only the fruits with the letter "a" in the name.
 
-# Loop Through the Index Numbers
-# You can also loop through the list items by referring to their index number.
+# Without list comprehension you will have to write a for statement with a conditional test inside:
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+newlist = []
 
-# Use the range() and len() functions to create a suitable iterable.
-# Print all items by referring to their index number:
+for x in fruits:
+  if "a" in x:
+    newlist.append(x)
 
-thislist = ["apple", "banana", "cherry"]
-for i in range(len(thislist)):
-  print(thislist[i])
-# The iterable created in the example above is [0, 1, 2].
+print(newlist)
+# With list comprehension you can do all that with only one line of code:
 
-# Using a While Loop
-# You can loop through the list items by using a while loop.
-# Use the len() function to determine the length of the list, then start at 0 and loop your way through the list items by referring to their indexes.
-# Remember to increase the index by 1 after each iteration.
-# Print all items, using a while loop to go through all the index numbers
+Example
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
 
-thislist = ["apple", "banana", "cherry"]
-i = 0
-while i < len(thislist):
-  print(thislist[i])
-  i = i + 1
-# Learn more about while loops in our Python While Loops Chapter.
+newlist = [x for x in fruits if "a" in x]
 
-# Looping Using List Comprehension
-# List Comprehension offers the shortest syntax for looping through lists:
+print(newlist)
 
-# A short hand for loop that will print all items in a list:
+# The Syntax
+newlist = [expression for item in iterable if condition == True]
+# The return value is a new list, leaving the old list unchanged.
 
-thislist = ["apple", "banana", "cherry"]
-[print(x) for x in thislist]
+# Condition
+# The condition is like a filter that only accepts the items that evaluate to True.
+
+Example
+# Only accept items that are not "apple":
+
+newlist = [x for x in fruits if x != "apple"]
+# The condition if x != "apple"  will return True for all elements other than "apple", making the new list contain all fruits except "apple".
+
+# The condition is optional and can be omitted:
+
+Example
+# With no if statement:
+
+newlist = [x for x in fruits]
+# Iterable
+# The iterable can be any iterable object, like a list, tuple, set etc.
+
+Example
+# You can use the range() function to create an iterable:
+
+newlist = [x for x in range(10)]
+# Same example, but with a condition:
+
+Example
+# Accept only numbers lower than 5:
+
+newlist = [x for x in range(10) if x < 5]
+# Expression
+# The expression is the current item in the iteration, but it is also the outcome, which you can manipulate before it ends up like a list item in the new list:
+
+Example
+# Set the values in the new list to upper case:
+
+newlist = [x.upper() for x in fruits]
+# You can set the outcome to whatever you like:
+
+Example
+# Set all values in the new list to 'hello':
+
+newlist = ['hello' for x in fruits]
+# The expression can also contain conditions, not like a filter, but as a way to manipulate the outcome:
+
+Example
+# Return "orange" instead of "banana":
+
+newlist = [x if x != "banana" else "orange" for x in fruits]
