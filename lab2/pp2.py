@@ -1,22 +1,35 @@
-# Python - Access Set Items
-# Access Items
-# You cannot access items in a set by referring to an index or a key.
+# Python - Add Set Items
+# Add Items
+# Once a set is created, you cannot change its items, but you can add new items.
 
-# But you can loop through the set items using a for loop, or ask if a specified value is present in a set, by using the in keyword.
+# To add one item to a set use the add() method.
 
-# Loop through the set, and print the values:
-
-thisset = {"apple", "banana", "cherry"}
-
-for x in thisset:
-  print(x)
-# Check if "banana" is present in the set:
+# Add an item to a set, using the add() method:
 
 thisset = {"apple", "banana", "cherry"}
 
-print("banana" in thisset)
-# Check if "banana" is NOT present in the set:
+thisset.add("orange")
+
+print(thisset)
+# Add Sets
+# To add items from another set into the current set, use the update() method.
+
+# Add elements from tropical into thisset:
 
 thisset = {"apple", "banana", "cherry"}
+tropical = {"pineapple", "mango", "papaya"}
 
-print("banana" not in thisset)
+thisset.update(tropical)
+
+print(thisset)
+# Add Any Iterable
+# The object in the update() method does not have to be a set, it can be any iterable object (tuples, lists, dictionaries etc.).
+
+# Add elements of a list to at set:
+
+thisset = {"apple", "banana", "cherry"}
+mylist = ["kiwi", "orange"]
+
+thisset.update(mylist)
+
+print(thisset)
