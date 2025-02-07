@@ -1,48 +1,54 @@
-# Python - Add List Items
+# Python - Remove List Items
 
 
-# Append Items
-# To add an item to the end of the list, use the append() method:
-
-# ExampleGet your own Python Server
-# Using the append() method to append an item:
+# Remove Specified Item
+# The remove() method removes the specified item.
+# Remove "banana":
 
 thislist = ["apple", "banana", "cherry"]
-thislist.append("orange")
+thislist.remove("banana")
+print(thislist)
+# If there are more than one item with the specified value, the remove() method removes the first occurrence:
+
+# Remove the first occurrence of "banana":
+
+thislist = ["apple", "banana", "cherry", "banana", "kiwi"]
+thislist.remove("banana")
 print(thislist)
 
-# Insert Items
-# To insert a list item at a specified index, use the insert() method.
-
-# The insert() method inserts an item at the specified index:
-
-# Insert an item as the second position:
+# Remove Specified Index
+# The pop() method removes the specified index.
+# Remove the second item:
 
 thislist = ["apple", "banana", "cherry"]
-thislist.insert(1, "orange")
+thislist.pop(1)
 print(thislist)
-#------------------------------------------------------------------------------
-# Note: As a result of the examples above, the lists will now contain 4 items.
-#------------------------------------------------------------------------------
+# If you do not specify the index, the pop() method removes the last item.
 
-# Extend List
-# To append elements from another list to the current list, use the extend() method.
-
-# Add the elements of tropical to thislist:
+# Remove the last item:
 
 thislist = ["apple", "banana", "cherry"]
-tropical = ["mango", "pineapple", "papaya"]
-thislist.extend(tropical)
+thislist.pop()
 print(thislist)
 
-# The elements will be added to the end of the list.
-
-# Add Any Iterable
-# The extend() method does not have to append lists, you can add any iterable object (tuples, sets, dictionaries etc.).
-
-# Add elements of a tuple to a list:
+# The del keyword also removes the specified index:
+# Remove the first item:
 
 thislist = ["apple", "banana", "cherry"]
-thistuple = ("kiwi", "orange")
-thislist.extend(thistuple)
+del thislist[0]
+print(thislist)
+# The del keyword can also delete the list completely.
+# Delete the entire list:
+
+thislist = ["apple", "banana", "cherry"]
+del thislist
+# Clear the List
+# The clear() method empties the list.
+
+# The list still remains, but it has no content.
+
+# Clear the list content:
+
+thislist = ["apple", "banana", "cherry"]
+thislist.clear()
 print(thislist)
