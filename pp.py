@@ -1,36 +1,54 @@
 '''
-Python Install
-Many PCs and Macs will have python already installed.
+Python Indentation
+Indentation refers to the spaces at the beginning of a code line.
 
-To check if you have python installed on a Windows PC, search in the start bar for Python or run the following on the Command Line (cmd.exe):
+Where in other programming languages the indentation in code is for readability only, the indentation in Python is very important.
 
-C:\Users\Your Name>python --version
-To check if you have python installed on a Linux or Mac, then on linux open the command line or on Mac open the Terminal and type:
+Python uses indentation to indicate a block of code.
 
-python --version
-If you find that you do not have Python installed on your computer, then you can download it for free from the following website: https://www.python.org/
-
-Python Quickstart
-Python is an interpreted programming language, this means that as a developer you write Python (.py) files in a text editor and then put those files into the python interpreter to be executed.
-
-The way to run a python file is like this on the command line:
-
-C:\Users\Your Name>python helloworld.py
-Where "helloworld.py" is the name of your python file.
-
-Let's write our first Python file, called helloworld.py, which can be done in any text editor.
-
-Where "helloworld.py" is the name of your python file.
-
-Let's write our first Python file, called helloworld.py, which can be done in any text editor.
+ExampleGet your own Python Server
 '''
+
+#Example
+if 5 > 2:
+  print("Five is greater than two!") # \t is true 
+
+# Python will give you an error if you skip the indentation:
+if 5 > 2:
+ print("Five is greater than two!") # \t is wrong!
+
+# The number of spaces is up to you as a programmer, the most common use is four, but it has to be at least one.
+
+#Example
+if 5 > 2:
+ print("Five is greater than two!") 
+if 5 > 2:
+        print("Five is greater than two!") # not 8 or one, \t include 4 spaces
+
+# You have to use the same number of spaces in the same block of code, otherwise Python will give you an error:
+
+#Example
+if 5 > 2:
+ print("Five is greater than two!")
+        print("Five is greater than two!") #Syntax Error:
+ 
+#Python Variables
+#In Python, variables are created when you assign a value to it:
+
+#Example
+#Variables in Python:
+x = 5
+y = "Hello, World!" #Python has no command for declaring a variable. For example int, double, string how in C++
+
+#Comments
+#Python has commenting capability for the purpose of in-code documentation.
+
+#Comments start with a #, and Python will render the rest of the line as a comment:
+
+#Example
+#Comments in Python:
+
+#This is a comment.
 print("Hello, World!")
-'''
-Simple as that. Save your file. Open your command line, navigate to the directory where you saved your file, and run:
 
-C:\Users\Your Name>python helloworld.py
 
-The output should read:
-
-Hello, World!
-'''
