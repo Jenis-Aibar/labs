@@ -1,42 +1,24 @@
-# Python - Access Dictionary Items
-# Accessing Items
-# You can access the items of a dictionary by referring to its key name, inside square brackets:
-
-# ExampleGet your own Python Server
-# Get the value of the "model" key:
+# Python - Change Dictionary Items
+# Change Values
+# You can change the value of a specific item by referring to its key name:
+# Change the "year" to 2018:
 
 thisdict = {
   "brand": "Ford",
   "model": "Mustang",
   "year": 1964
 }
-x = thisdict["model"]
-# There is also a method called get() that will give you the same result:
+thisdict["year"] = 2018
+# Update Dictionary
+# The update() method will update the dictionary with the items from the given argument.
 
-# Example
-# Get the value of the "model" key:
+# The argument must be a dictionary, or an iterable object with key:value pairs.
 
-x = thisdict.get("model")
-# Get Keys
-# The keys() method will return a list of all the keys in the dictionary.
+# Update the "year" of the car by using the update() method:
 
-# Get a list of the keys:
-
-x = thisdict.keys()
-# The list of the keys is a view of the dictionary, meaning that any changes done to the dictionary will be reflected in the keys list.
-
-# Add a new item to the original dictionary, and see that the keys list gets updated as well:
-
-car = {
-"brand": "Ford",
-"model": "Mustang",
-"year": 1964
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
 }
-
-x = car.keys()
-
-print(x) #before the change
-
-car["color"] = "white"
-
-print(x) #after the change
+thisdict.update({"year": 2020})
