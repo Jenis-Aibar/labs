@@ -1,41 +1,49 @@
-# Python Comments
+# Python Variables
 
-# Comments can be used to explain Python code.
-# Comments can be used to make the code more readable.
-# Comments can be used to prevent execution when testing code.
+#Creating Variables
+#Python has no command for declaring a variable.
+#A variable is created the moment you first assign a value to it.
 
+#ExampleGet your own Python Server
+x = 5
+y = "John"
+print(x)
+print(y)
 
-# Creating a Comment
-#Comments starts with a #, and Python will ignore them:
+#Variables do not need to be declared with any particular type, and can even change type after they have been set.
 
-#This is a comment
-print("Hello, World!")
+x = 4       # x is of type int
+x = "Sally" # x is now of type str
+print(x)
 
-#Comments can be placed at the end of a line, and Python will ignore the rest of the line:
+#Casting
+#If you want to specify the data type of a variable, this can be done with casting.
 
-print("Hello, World!") #This is a comment
+x = str(3)    # x will be '3'
+y = int(3)    # y will be 3
+z = float(3)  # z will be 3.0
 
-#A comment does not have to be text that explains the code, it can also be used to prevent Python from executing code:
+#Get the Type
+#You can get the data type of a variable with the type() function.
 
-#print("Hello, World!")
-print("Cheers, Mate!")
+x = 5
+y = "John"
+print(type(x))
+print(type(y))
 
-#Multiline Comments
+#Single or Double Quotes?
+#String variables can be declared either by using single or double quotes:
 
-# Python does not really have a syntax for multiline comments.
-# To add a multiline comment you could insert a # for each line:
+x = "John"
+# is the same as
+x = 'John'
 
-#This is a comment
-#written in
-#more than just one line
-print("Hello, World!")
+#Case-Sensitive
+#Variable names are case-sensitive.
 
-#Since Python will ignore string literals that are not assigned to a variable, you can add a multiline string (triple quotes) in your code, and place your comment inside it:
+#This will create two variables:
 
-"""
-This is a comment
-written in
-more than just one line
-"""
-print("Hello, World!")
+a = 4
+A = "Sally"
+#A will not overwrite a
 
