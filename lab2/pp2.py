@@ -1,67 +1,25 @@
-# Python - Sort Lists
-# Sort List Alphanumerically
-# List objects have a sort() method that will sort the list alphanumerically, ascending, by default:
+# Python - Copy Lists
+# Copy a List
+# You cannot copy a list simply by typing list2 = list1, because: list2 will only be a reference to list1, and changes made in list1 will automatically also be made in list2.
 
-# Sort the list alphabetically:
+# Use the copy() method
+# You can use the built-in List method copy() to copy a list.
+# Make a copy of a list with the copy() method:
 
-thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
-thislist.sort()
-print(thislist)
-# Sort the list numerically:
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist.copy()
+print(mylist)
+# Use the list() method
+# Another way to make a copy is to use the built-in method list().
+# Make a copy of a list with the list() method:
 
-thislist = [100, 50, 65, 82, 23]
-thislist.sort()
-print(thislist)
-# Sort Descending
-# To sort descending, use the keyword argument reverse = True:
+thislist = ["apple", "banana", "cherry"]
+mylist = list(thislist)
+print(mylist)
+# Use the slice Operator
+# You can also make a copy of a list by using the : (slice) operator.
+# Make a copy of a list with the : operator:
 
-# Sort the list descending:
-
-thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
-thislist.sort(reverse = True)
-print(thislist)
-# Sort the list descending:
-
-thislist = [100, 50, 65, 82, 23]
-thislist.sort(reverse = True)
-print(thislist)
-# Customize Sort Function
-# You can also customize your own function by using the keyword argument key = function.
-
-# The function will return a number that will be used to sort the list (the lowest number first):
-
-# Sort the list based on how close the number is to 50:
-
-def myfunc(n):
-  return abs(n - 50)
-
-thislist = [100, 50, 65, 82, 23]
-thislist.sort(key = myfunc)
-print(thislist)
-# Case Insensitive Sort
-# By default the sort() method is case sensitive, resulting in all capital letters being sorted before lower case letters:
-
-# Case sensitive sorting can give an unexpected result:
-
-thislist = ["banana", "Orange", "Kiwi", "cherry"]
-thislist.sort()
-print(thislist)
-# Luckily we can use built-in functions as key functions when sorting a list.
-
-# So if you want a case-insensitive sort function, use str.lower as a key function:
-
-# Perform a case-insensitive sort of the list:
-
-thislist = ["banana", "Orange", "Kiwi", "cherry"]
-thislist.sort(key = str.lower)
-print(thislist)
-# Reverse Order
-# What if you want to reverse the order of a list, regardless of the alphabet?
-
-# The reverse() method reverses the current sorting order of the elements.
-
-# Reverse the order of the list items:
-
-thislist = ["banana", "Orange", "Kiwi", "cherry"]
-thislist.reverse()
-print(thislist)
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist[:]
+print(mylist)
