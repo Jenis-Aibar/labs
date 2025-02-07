@@ -1,49 +1,44 @@
-# Python Variables
+# Python - Variable Names
 
-#Creating Variables
-#Python has no command for declaring a variable.
-#A variable is created the moment you first assign a value to it.
+# Variable Names
+# A variable can have a short name (like x and y) or a more descriptive name (age, carname, total_volume). Rules for Python variables:
+# A variable name must start with a letter or the underscore character
+# A variable name cannot start with a number
+# A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )
+# Variable names are case-sensitive (age, Age and AGE are three different variables)
+# A variable name cannot be any of the Python keywords.
 
-#ExampleGet your own Python Server
-x = 5
-y = "John"
-print(x)
-print(y)
+#Legal variable names:
 
-#Variables do not need to be declared with any particular type, and can even change type after they have been set.
+myvar = "John"
+my_var = "John"
+_my_var = "John"
+myVar = "John"
+MYVAR = "John"
+myvar2 = "John"
 
-x = 4       # x is of type int
-x = "Sally" # x is now of type str
-print(x)
+#Illegal variable names:
 
-#Casting
-#If you want to specify the data type of a variable, this can be done with casting.
+2myvar = "John"
+my-var = "John"
+my var = "John"
 
-x = str(3)    # x will be '3'
-y = int(3)    # y will be 3
-z = float(3)  # z will be 3.0
+#Multi Words Variable Names
+#Variable names with more than one word can be difficult to read.
 
-#Get the Type
-#You can get the data type of a variable with the type() function.
+#There are several techniques you can use to make them more readable:
 
-x = 5
-y = "John"
-print(type(x))
-print(type(y))
+#Camel Case
+#Each word, except the first, starts with a capital letter:
 
-#Single or Double Quotes?
-#String variables can be declared either by using single or double quotes:
+myVariableName = "John"
 
-x = "John"
-# is the same as
-x = 'John'
+#Pascal Case
+#Each word starts with a capital letter:
 
-#Case-Sensitive
-#Variable names are case-sensitive.
+MyVariableName = "John"
 
-#This will create two variables:
+#Snake Case
+#Each word is separated by an underscore character:
 
-a = 4
-A = "Sally"
-#A will not overwrite a
-
+my_variable_name = "John"
