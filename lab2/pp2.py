@@ -1,58 +1,38 @@
-# Python - Access Tuple Items
-# Access Tuple Items
-# You can access tuple items by referring to the index number, inside square brackets:
+# Python - Update Tuples
+# Tuples are unchangeable, meaning that you cannot change, add, or remove items once the tuple is created.
 
-# ExampleGet your own Python Server
-# Print the second item in the tuple:
+# But there are some workarounds.
 
-thistuple = ("apple", "banana", "cherry")
-print(thistuple[1])
-# Note: The first item has index 0.
+# Change Tuple Values
+# Once a tuple is created, you cannot change its values. Tuples are unchangeable, or immutable as it also is called.
 
-# Negative Indexing
-# Negative indexing means start from the end.
+# But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.
 
-# -1 refers to the last item, -2 refers to the second last item etc.
+# Convert the tuple into a list to be able to change it:
 
-# Print the last item of the tuple:
+x = ("apple", "banana", "cherry")
+y = list(x)
+y[1] = "kiwi"
+x = tuple(y)
 
-thistuple = ("apple", "banana", "cherry")
-print(thistuple[-1])
-# Range of Indexes
-# You can specify a range of indexes by specifying where to start and where to end the range.
+print(x)
+# Add Items
+# Since tuples are immutable, they do not have a built-in append() method, but there are other ways to add items to a tuple.
 
-# When specifying a range, the return value will be a new tuple with the specified items.
-# Return the third, fourth, and fifth item:
+# 1. Convert into a list: Just like the workaround for changing a tuple, you can convert it into a list, add your item(s), and convert it back into a tuple.
 
-thistuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
-print(thistuple[2:5])
-# Note: The search will start at index 2 (included) and end at index 5 (not included).
-
-# Remember that the first item has index 0.
-
-# By leaving out the start value, the range will start at the first item:
-# This example returns the items from the beginning to, but NOT included, "kiwi":
-
-thistuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
-print(thistuple[:4])
-# By leaving out the end value, the range will go on to the end of the tuple:
-
-# This example returns the items from "cherry" and to the end:
-
-thistuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
-print(thistuple[2:])
-
-# Range of Negative Indexes
-# Specify negative indexes if you want to start the search from the end of the tuple:
-
-# This example returns the items from index -4 (included) to index -1 (excluded)
-
-thistuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
-print(thistuple[-4:-1])
-# Check if Item Exists
-# To determine if a specified item is present in a tuple use the in keyword:
-# Check if "apple" is present in the tuple:
+# Convert the tuple into a list, add "orange", and convert it back into a tuple:
 
 thistuple = ("apple", "banana", "cherry")
-if "apple" in thistuple:
-  print("Yes, 'apple' is in the fruits tuple")
+y = list(thistuple)
+y.append("orange")
+thistuple = tuple(y)
+# 2. Add tuple to a tuple. You are allowed to add tuples to tuples, so if you want to add one item, (or many), create a new tuple with the item(s), and add it to the existing tuple:
+
+# Create a new tuple with the value "orange", and add that tuple:
+
+thistuple = ("apple", "banana", "cherry")
+y = ("orange",)
+thistuple += y
+
+print(thistuple)
