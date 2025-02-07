@@ -1,125 +1,86 @@
-# Python Operators
+# Python Lists
 
+mylist = ["apple", "banana", "cherry"]
 
-# Python Operators
-# Operators are used to perform operations on variables and values.
-# In the example below, we use the + operator to add together two values:
-# ExampleGet your own Python Server
+# Lists are used to store multiple items in a single variable.
 
-print(10 + 5)
+# Lists are one of 4 built-in data types in Python used to store collections of data, the other 3 are Tuple, Set, and Dictionary, all with different qualities and usage.
 
-# Python divides the operators in the following groups:
-'''
-Arithmetic operators
-Assignment operators
-Comparison operators
-Logical operators
-Identity operators
-Membership operators
-Bitwise operators
-Python Arithmetic Operators
-Arithmetic operators are used with numeric values to perform common mathematical operations:
+# Lists are created using square brackets:
 
+# Create a List:
 
-Operator	Name	Example	Try it
-+	Addition	x + y	
--	Subtraction	x - y	
-*	Multiplication	x * y	
-/	Division	x / y	
-%	Modulus	x % y	
-**	Exponentiation	x ** y	
-//	Floor division	x // y	
-Python Assignment Operators
-Assignment operators are used to assign values to variables:
+thislist = ["apple", "banana", "cherry"]
+print(thislist)
 
-Operator	Example	Same As	Try it
-=	x = 5	x = 5	
-+=	x += 3	x = x + 3	
--=	x -= 3	x = x - 3	
-*=	x *= 3	x = x * 3	
-/=	x /= 3	x = x / 3	
-%=	x %= 3	x = x % 3	
-//=	x //= 3	x = x // 3	
-**=	x **= 3	x = x ** 3	
-&=	x &= 3	x = x & 3	
-|=	x |= 3	x = x | 3	
-^=	x ^= 3	x = x ^ 3	
->>=	x >>= 3	x = x >> 3	
-<<=	x <<= 3	x = x << 3	
-:=	print(x := 3)	x = 3
-'''
-print(x)	
+# List Items
+# List items are ordered, changeable, and allow duplicate values.
 
-# Python Comparison Operators
-# Comparison operators are used to compare two values:
+# List items are indexed, the first item has index [0], the second item has index [1] etc.
 
-'''
-Operator	Name	Example	Try it
-==	Equal	x == y	
-!=	Not equal	x != y	
->	Greater than	x > y	
-<	Less than	x < y	
->=	Greater than or equal to	x >= y	
-<=	Less than or equal to	x <= y	
-Python Logical Operators
-Logical operators are used to combine conditional statements:
+# Ordered
+# When we say that lists are ordered, it means that the items have a defined order, and that order will not change.
 
-Operator	Description	Example	Try it
-and 	Returns True if both statements are true	x < 5 and  x < 10	
-or	Returns True if one of the statements is true	x < 5 or x < 4	
-not	Reverse the result, returns False if the result is true	not(x < 5 and x < 10)	
-Python Identity Operators
-Identity operators are used to compare the objects, not if they are equal, but if they are actually the same object, with the same memory location:
+# If you add new items to a list, the new items will be placed at the end of the list.
 
-Operator	Description	Example	Try it
-is 	Returns True if both variables are the same object	x is y	
-is not	Returns True if both variables are not the same object	x is not y	
-Python Membership Operators
-Membership operators are used to test if a sequence is presented in an object:
+#----------------------------------------------------------------------------------------------------------------------
+# Note: There are some list methods that will change the order, but in general: the order of the items will not change.
+#----------------------------------------------------------------------------------------------------------------------
 
-Operator	Description	Example	Try it
-in 	Returns True if a sequence with the specified value is present in the object	x in y	
-not in	Returns True if a sequence with the specified value is not present in the object	x not in y	
-Python Bitwise Operators
-Bitwise operators are used to compare (binary) numbers:
+# Changeable
+# The list is changeable, meaning that we can change, add, and remove items in a list after it has been created.
+# Allow Duplicates
+# Since lists are indexed, lists can have items with the same value:
 
-Operator	Name	Description	Example	Try it
-& 	AND	Sets each bit to 1 if both bits are 1	x & y	
-|	OR	Sets each bit to 1 if one of two bits is 1	x | y	
-^	XOR	Sets each bit to 1 if only one of two bits is 1	x ^ y	
-~	NOT	Inverts all the bits	~x	
-<<	Zero fill left shift	Shift left by pushing zeros in from the right and let the leftmost bits fall off	x << 2	
->>	Signed right shift	Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off	x >> 2	
-Operator Precedence
-Operator precedence describes the order in which operations are performed.
-'''
+# Lists allow duplicate values:
 
-# Parentheses has the highest precedence, meaning that expressions inside parentheses must be evaluated first:
+thislist = ["apple", "banana", "cherry", "apple", "cherry"]
+print(thislist)
 
-print((6 + 3) - (6 + 3))
+# List Length
+# To determine how many items a list has, use the len() function:
 
-# Multiplication * has higher precedence than addition +, and therefor multiplications are evaluated before additions:
+# Print the number of items in the list:
 
-print(100 + 5 * 3)
-# The precedence order is described in the table below, starting with the highest precedence at the top:
-'''
-Operator	Description	Try it
-()	Parentheses	
-**	Exponentiation	
-+x  -x  ~x	Unary plus, unary minus, and bitwise NOT	
-*  /  //  %	Multiplication, division, floor division, and modulus	
-+  -	Addition and subtraction	
-<<  >>	Bitwise left and right shifts	
-&	Bitwise AND	
-^	Bitwise XOR	
-|	Bitwise OR	
-==  !=  >  >=  <  <=  is  is not  in  not in 	Comparisons, identity, and membership operators	
-not	Logical NOT	
-and	AND	
-or	OR	
-If two operators have the same precedence, the expression is evaluated from left to right.
-'''
+thislist = ["apple", "banana", "cherry"]
+print(len(thislist))
 
-# Addition + and subtraction - has the same precedence, and therefor we evaluate the expression from left to right:
+# List Items - Data Types
+# List items can be of any data type:
 
-print(5 + 4 - 7 + 3)
+# String, int and boolean data types:
+
+list1 = ["apple", "banana", "cherry"]
+list2 = [1, 5, 7, 9, 3]
+list3 = [True, False, False]
+
+# A list can contain different data types:
+
+# A list with strings, integers and boolean values:
+
+list1 = ["abc", 34, True, 40, "male"]
+type()
+
+# From Python's perspective, lists are defined as objects with the data type 'list':
+
+<class 'list'>
+
+# What is the data type of a list?
+
+mylist = ["apple", "banana", "cherry"]
+print(type(mylist))
+# The list() Constructor
+# It is also possible to use the list() constructor when creating a new list.
+
+# Using the list() constructor to make a List:
+
+thislist = list(("apple", "banana", "cherry")) # note the double round-brackets
+print(thislist)
+
+# Python Collections (Arrays)
+# There are four collection data types in the Python programming language:
+
+# List is a collection which is ordered and changeable. Allows duplicate members.
+# Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+# Set is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
+# Dictionary is a collection which is ordered** and changeable. No duplicate members.
