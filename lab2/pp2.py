@@ -1,78 +1,67 @@
-# Python - List Comprehension
+# Python - Sort Lists
+# Sort List Alphanumerically
+# List objects have a sort() method that will sort the list alphanumerically, ascending, by default:
 
-# List Comprehension
-# List comprehension offers a shorter syntax when you want to create a new list based on the values of an existing list.
+# Sort the list alphabetically:
 
-Example:
+thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
+thislist.sort()
+print(thislist)
+# Sort the list numerically:
 
-# Based on a list of fruits, you want a new list, containing only the fruits with the letter "a" in the name.
+thislist = [100, 50, 65, 82, 23]
+thislist.sort()
+print(thislist)
+# Sort Descending
+# To sort descending, use the keyword argument reverse = True:
 
-# Without list comprehension you will have to write a for statement with a conditional test inside:
-fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
-newlist = []
+# Sort the list descending:
 
-for x in fruits:
-  if "a" in x:
-    newlist.append(x)
+thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
+thislist.sort(reverse = True)
+print(thislist)
+# Sort the list descending:
 
-print(newlist)
-# With list comprehension you can do all that with only one line of code:
+thislist = [100, 50, 65, 82, 23]
+thislist.sort(reverse = True)
+print(thislist)
+# Customize Sort Function
+# You can also customize your own function by using the keyword argument key = function.
 
-Example
-fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+# The function will return a number that will be used to sort the list (the lowest number first):
 
-newlist = [x for x in fruits if "a" in x]
+# Sort the list based on how close the number is to 50:
 
-print(newlist)
+def myfunc(n):
+  return abs(n - 50)
 
-# The Syntax
-newlist = [expression for item in iterable if condition == True]
-# The return value is a new list, leaving the old list unchanged.
+thislist = [100, 50, 65, 82, 23]
+thislist.sort(key = myfunc)
+print(thislist)
+# Case Insensitive Sort
+# By default the sort() method is case sensitive, resulting in all capital letters being sorted before lower case letters:
 
-# Condition
-# The condition is like a filter that only accepts the items that evaluate to True.
+# Case sensitive sorting can give an unexpected result:
 
-Example
-# Only accept items that are not "apple":
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort()
+print(thislist)
+# Luckily we can use built-in functions as key functions when sorting a list.
 
-newlist = [x for x in fruits if x != "apple"]
-# The condition if x != "apple"  will return True for all elements other than "apple", making the new list contain all fruits except "apple".
+# So if you want a case-insensitive sort function, use str.lower as a key function:
 
-# The condition is optional and can be omitted:
+# Perform a case-insensitive sort of the list:
 
-Example
-# With no if statement:
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort(key = str.lower)
+print(thislist)
+# Reverse Order
+# What if you want to reverse the order of a list, regardless of the alphabet?
 
-newlist = [x for x in fruits]
-# Iterable
-# The iterable can be any iterable object, like a list, tuple, set etc.
+# The reverse() method reverses the current sorting order of the elements.
 
-Example
-# You can use the range() function to create an iterable:
+# Reverse the order of the list items:
 
-newlist = [x for x in range(10)]
-# Same example, but with a condition:
-
-Example
-# Accept only numbers lower than 5:
-
-newlist = [x for x in range(10) if x < 5]
-# Expression
-# The expression is the current item in the iteration, but it is also the outcome, which you can manipulate before it ends up like a list item in the new list:
-
-Example
-# Set the values in the new list to upper case:
-
-newlist = [x.upper() for x in fruits]
-# You can set the outcome to whatever you like:
-
-Example
-# Set all values in the new list to 'hello':
-
-newlist = ['hello' for x in fruits]
-# The expression can also contain conditions, not like a filter, but as a way to manipulate the outcome:
-
-Example
-# Return "orange" instead of "banana":
-
-newlist = [x if x != "banana" else "orange" for x in fruits]
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.reverse()
+print(thislist)
