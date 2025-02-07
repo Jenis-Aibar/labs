@@ -1,45 +1,36 @@
-# Python - Slicing Strings
+# Python - Modify Strings
+# Python has a set of built-in methods that you can use on strings.
 
-# Slicing
-# You can return a range of characters by using the slice syntax.
+# Upper Case
+# The upper() method returns the string in upper case:
 
-# Specify the start index and the end index, separated by a colon, to return a part of the string.
+a = "Hello, World!"
+print(a.upper())
 
-# ExampleGet your own Python Server
-# Get the characters from position 2 to position 5 (not included):
+# Lower Case
+# The lower() method returns the string in lower case:
 
-b = "Hello, World!"
-print(b[2:5])
+a = "Hello, World!"
+print(a.lower())
 
-#--------------------------------------
-#Note: The first character has index 0.
-#--------------------------------------
+# Remove Whitespace
+# Whitespace is the space before and/or after the actual text, and very often you want to remove this space.
 
-# Slice From the Start
-# By leaving out the start index, the range will start at the first character:
+# The strip() method removes any whitespace from the beginning or the end:
 
-# Get the characters from the start to position 5 (not included):
+a = " Hello, World! "
+print(a.strip()) # returns "Hello, World!"
 
-b = "Hello, World!"
-print(b[:5])
+# Replace String
+# The replace() method replaces a string with another string:
 
-# Slice To the End
-# By leaving out the end index, the range will go to the end:
+a = "Hello, World!"
+print(a.replace("H", "J"))
 
-# Get the characters from position 2, and all the way to the end:
+# Split String
+# The split() method returns a list where the text between the specified separator becomes the list items.
+# The split() method splits the string into substrings if it finds instances of the separator:
 
-b = "Hello, World!"
-print(b[2:])
-
-# Negative Indexing
-# Use negative indexes to start the slice from the end of the string:
-
-# Get the characters:
-
-# From: "o" in "World!" (position -5)
-
-# To, but not included: "d" in "World!" (position -2):
-
-b = "Hello, World!"
-print(b[-5:-2])
+a = "Hello, World!"
+print(a.split(",")) # returns ['Hello', ' World!']
 
