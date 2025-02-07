@@ -1,38 +1,42 @@
-# Python - Update Tuples
-# Tuples are unchangeable, meaning that you cannot change, add, or remove items once the tuple is created.
+# Python - Unpack Tuples
+# Unpacking a Tuple
+# When we create a tuple, we normally assign values to it. This is called "packing" a tuple:
 
-# But there are some workarounds.
+# Packing a tuple:
 
-# Change Tuple Values
-# Once a tuple is created, you cannot change its values. Tuples are unchangeable, or immutable as it also is called.
+fruits = ("apple", "banana", "cherry")
+# But, in Python, we are also allowed to extract the values back into variables. This is called "unpacking":
 
-# But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.
+# Unpacking a tuple:
 
-# Convert the tuple into a list to be able to change it:
+fruits = ("apple", "banana", "cherry")
 
-x = ("apple", "banana", "cherry")
-y = list(x)
-y[1] = "kiwi"
-x = tuple(y)
+(green, yellow, red) = fruits
 
-print(x)
-# Add Items
-# Since tuples are immutable, they do not have a built-in append() method, but there are other ways to add items to a tuple.
+print(green)
+print(yellow)
+print(red)
+# Note: The number of variables must match the number of values in the tuple, if not, you must use an asterisk to collect the remaining values as a list.
 
-# 1. Convert into a list: Just like the workaround for changing a tuple, you can convert it into a list, add your item(s), and convert it back into a tuple.
+# Using Asterisk*
+# If the number of variables is less than the number of values, you can add an * to the variable name and the values will be assigned to the variable as a list:
+# Assign the rest of the values as a list called "red":
 
-# Convert the tuple into a list, add "orange", and convert it back into a tuple:
+fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")
 
-thistuple = ("apple", "banana", "cherry")
-y = list(thistuple)
-y.append("orange")
-thistuple = tuple(y)
-# 2. Add tuple to a tuple. You are allowed to add tuples to tuples, so if you want to add one item, (or many), create a new tuple with the item(s), and add it to the existing tuple:
+(green, yellow, *red) = fruits
 
-# Create a new tuple with the value "orange", and add that tuple:
+print(green)
+print(yellow)
+print(red)
+# If the asterisk is added to another variable name than the last, Python will assign values to the variable until the number of values left matches the number of variables left.
 
-thistuple = ("apple", "banana", "cherry")
-y = ("orange",)
-thistuple += y
+# Add a list of values the "tropic" variable:
 
-print(thistuple)
+fruits = ("apple", "mango", "papaya", "pineapple", "cherry")
+
+(green, *tropic, red) = fruits
+
+print(green)
+print(tropic)
+print(red)
