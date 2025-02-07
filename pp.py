@@ -1,29 +1,41 @@
-# Python Variables - Assign Multiple Values
+#Python - Output Variables
 
-# Many Values to Multiple Variables
-# Python allows you to assign values to multiple variables in one line:
+#Output Variables
+#The Python print() function is often used to output variables.
 
-x, y, z = "Orange", "Banana", "Cherry"
+x = "Python is awesome"
 print(x)
-print(y)
-print(z)
 
-# One Value to Multiple Variables
-# And you can assign the same value to multiple variables in one line:
+#In the print() function, you output multiple variables, separated by a comma:
 
-x = y = z = "Orange"
-print(x)
-print(y)
-print(z)
+x = "Python"
+y = "is"
+z = "awesome"
+print(x, y, z)
 
-# Unpack a Collection
-# If you have a collection of values in a list, tuple etc. Python allows you to extract the values into variables. This is called unpacking.
+# You can also use the + operator to output multiple variables:
 
-# Unpack a list:
+x = "Python "
+y = "is "
+z = "awesome"
+print(x + y + z)
 
-fruits = ["apple", "banana", "cherry"]
-x, y, z = fruits
-print(x)
-print(y)
-print(z)
+# Notice the space character after "Python " and "is ", without them the result would be "Pythonisawesome".
 
+# For numbers, the + character works as a mathematical operator:
+
+x = 5
+y = 10
+print(x + y)
+
+# In the print() function, when you try to combine a string and a number with the + operator, Python will give you an error:
+
+x = 5
+y = "John"
+print(x + y)
+
+# The best way to output multiple variables in the print() function is to separate them with commas, which even support different data types:
+
+x = 5
+y = "John"
+print(x, y)
