@@ -11,13 +11,19 @@ apple_sound.play
 death_count = 0
 max_point = 0
 mass_list = [5, 10, 15] # Список размеров яблока
-apple_time = 3 # Время для большого яблока
+apple_time = 2 # Время для большого яблока
+flag = False
+start_time = 0
 
 def generate_apple (snake_body): # Генерация случайных яблок c разным весом
+    global flag, start_time
     mass_index = randint (0, 2)
     while True:
         apple_pos = (randint (1, 23) * 20, randint (6, 29) * 20)
         if apple_pos not in snake_body:
+            if (mass_list [mass_index] == 15):
+                flag = True
+                start_time = time.time() # Запускаем таймер (жизнь яблока)
             return (apple_pos, mass_list [mass_index])
 def collide_apple (apple_pos, cell_size, snake_pos): # Проверка задел ли игрок яблоку
     if apple_pos [0] - cell_size / 4 <= snake_pos [0] + cell_size / 2 <= apple_pos [0] + cell_size / 4:
@@ -31,7 +37,7 @@ def collide_snake (snake_pos, map_01): # Проверяет по матрице 
     return False
 
 def start ():
-    global death_count, max_point # Неменяемые при смерти данные
+    global death_count, max_point, flag, start_time # Неменяемые при смерти данные
 
     white = (255, 255, 255)
     black = (0, 0, 0)
@@ -43,7 +49,7 @@ def start ():
     wall_sizeX = 10
     cell_size = 20
     fps = 10
-    flag = False
+    
     level_type = "easy"
     font = pygame.font.Font(None, 50)
     scorepoint = 0
@@ -53,8 +59,8 @@ def start ():
     for i in range (26):
         map_01.append ([0] * 26)
 
-    snake_pos = [50, 10]
-    snake_body = [[50, 10], [30, 10]]
+    snake_pos = [50, 150]
+    snake_body = [[50, 150], [30, 150], [10, 150]]
     apple_size = cell_size / 2
     apple_pos = (randint (1, 23) * 20, randint (6, 29) * 20) # Спавн яблок в границах игровой карты
 
@@ -89,14 +95,8 @@ def start ():
         elif direction == "RIGHT":
             snake_pos [0] += cell_size
         
-        if snake_pos[0] < 10:
-            snake_pos[0] = 10 + 480 - cell_size
-        elif snake_pos[0] >= 10 + 480:
-            snake_pos[0] = 10
-        elif snake_pos[1] < 110:
-            snake_pos[1] = 110 + 480 - cell_size
-        elif snake_pos[1] >= 110 + 480:
-            snake_pos[1] = 110
+        if snake_pos[0] < 10 or snake_pos[0] > 480 or snake_pos[1] < 110 or snake_pos[1] > 580: # Проверка на соприкосновение со стеной
+            return True
 
         snake_body.insert (0, list (snake_pos))
 
@@ -105,18 +105,16 @@ def start ():
             snake_body.insert (0, list (apple_pos)) # Добавляем 1 блок к длине змей
             scorepoint += apple_size / 10 * 2 + 1
             apple_pos, apple_size = generate_apple (snake_body)
-
-            if (apple_size == 20):
-                flag = True
-                start_time = time.time() # Запускаем таймер (жизнь яблока)
         else:
             map_01 [(snake_body [-1][1] - 110) // 20][(snake_body [-1][0] - 10) // 20] = 0 # Матрица хранит где находится части тела змей
             snake_body.pop()
 
         if flag:
             if time.time() - start_time > apple_time: # Проверка жизни яблока
-                apple_pos, apple_size = generate_apple (snake_body)
                 flag = False
+                start_time = 0
+                apple_pos, apple_size = generate_apple (snake_body)
+                
         
         # Уровень сложности
         if len (snake_body) - 2 >= 20:
@@ -157,6 +155,7 @@ def start ():
         screen.blit(best, (492 - 220 + 10, 590 + 45 + 15 + 7))
 
         pygame.display.flip ()
+        #time.sleep (4)
         clock.tick (fps)
     return False
 
