@@ -1,82 +1,61 @@
-import pygame as p
+import pygame 
+import time
+import math
 from button import Button
-import datetime
+pygame.init()
 
-red = (255, 0, 0)
-grey = (128, 128, 128)
-white = (255, 255, 255)
-black = (0, 0, 0)
+screen = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
 
-p.init ()
+pygame.display.set_caption("MICKEY MOUSE CLOCK") 
 
-size = (500, 500)
-center = (250, 250)
-screen = p.display.set_mode (size)
-clock = p.time.Clock ()
+left = pygame.image.load(r"C:\\Users\\Admin\\AppData\\Roaming\\git\\labs\\lab7\\assets\\leftarm.png")
+right = pygame.image.load(r"C:\\Users\\Admin\\AppData\\Roaming\\git\\labs\\lab7\\assets\\rightarm.png")
+main = pygame.transform.scale(pygame.image.load(r"C:\\Users\\Admin\\AppData\\Roaming\\git\\labs\\lab7\\assets\\clock.png"), (800, 600))
 
-button = Button (size [0] - 100, 0, 100, 50, text = "Pause")
-image = p.image.load("C:\\Users\\Admin\\AppData\\Roaming\\git\\labs\\lab7\\assets\\mickeyclock.jpeg")
-image = p.transform.scale(image, (600, 600))
+pygame.mixer.music.load("C:\\Users\\Admin\\AppData\\Roaming\\git\\labs\\lab7\\assets\\sound.wav")
+pygame.mixer.music.play()
 
-p.mixer.music.load("C:\\Users\\Admin\\AppData\\Roaming\\git\\labs\\lab7\\assets\\sound.wav")
-p.mixer.music.play()
-
-def draw_seconds (surface, second):
-    hand_length = size [0] * 0.35
-    angle = second * 6
-    end_x = center [0] + hand_length * p.math.Vector2 (0, -1).rotate (angle).x
-    end_y = center [1] + hand_length * p.math.Vector2 (0, -1).rotate (angle).y
-    p.draw.line (surface, grey, center, (end_x, end_y), 5)
-
-def draw_minutes (surface, minute):
-    hand_length = size [0] * 0.30
-    angle = minute * 6
-    end_x = center [0] + hand_length * p.math.Vector2 (0, -1).rotate (angle).x
-    end_y = center [1] + hand_length * p.math.Vector2 (0, -1).rotate (angle).y
-    p.draw.line (surface, black, center, (end_x, end_y), 5)
-
-def draw_hours (surface, hour):
-    hand_length = size [0] * 0.20
-    angle = hour * 6
-    end_x = center [0] + hand_length * p.math.Vector2 (0, -1).rotate (angle).x
-    end_y = center [1] + hand_length * p.math.Vector2 (0, -1).rotate (angle).y
-    p.draw.line (surface, red, center, (end_x, end_y), 5)
-
-def main ():
-    running = True
-    pause_ = True
-    tmp = [0, 0, 0]
-
-    while (running):
-        screen.fill (white)
-        screen.blit(image, (-50, -50))
-        now = datetime.datetime.now ()
+button = Button (800 - 100, 0, 100, 50, text = "Pause")
+running = True
+ping = 0
+pause = False
+start_time = time.time ()   
+while running: 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if button.is_clicked (event):
+            pause = not pause
+            if pause:
+                pygame.mixer.music.stop ()
+                button.text = "RESUME"
+                pause_start = time.time()
+            else:
+                pygame.mixer.music.play()
+                button.text = "PAUSE"
+                ping += time.time() - pause_start
+    if not pause:
+        elapsed = time.time() - start_time - ping
+        t = time.localtime(start_time + elapsed)
+        minute = t.tm_min
+        second = t.tm_sec
         
-        if pause_ != False:
-            draw_seconds (screen, now.second)
-            draw_minutes (screen, now.minute)
-            draw_hours (screen, now.hour)
-            p.mixer.music.unpause ()
-            tmp = (now.second, now.minute, now.hour)
-        else:
-            draw_seconds (screen, tmp [0])
-            draw_minutes (screen, tmp [1])
-            draw_hours (screen, tmp [2])
-            p.mixer.music.pause ()
-        button.draw(screen)
-        p.display.flip ()
-        clock.tick (1)
+        minute_angle = minute * 6    + (second / 60) * 6  #қазіргі минут * 360 градус / 60 минут + қазіргі секундты қосамыз 
+        second_angle = second * 6  
+        
+        screen.blit(main, (0,0))  #основаға суретті орналастыру
+        
+        rotated_rightarm = pygame.transform.rotate(pygame.transform.scale(right, (800, 600)), -minute_angle) #оң қол минутты орналастыру
+        rightarmrect = rotated_rightarm.get_rect(center=(800 // 2 - 30, 600 // 2 - 15))
+        screen.blit(rotated_rightarm, rightarmrect)
 
-        for event in p.event.get ():
-            if event.type == p.QUIT:
-                running = False
-            if button.is_clicked(event):
-                if pause_:
-                    pause_ = False
-                    button.text = 'PAUSE'
-                else:
-                    pause_ = True
-                    button.text = 'UNPAUSE'
-    p.quit ()
-
-main ()
+        rotated_leftarm = pygame.transform.rotate(pygame.transform.scale(left, (40.95, 682.5)), -second_angle) #сол қол секундты орналастыру
+        leftarmrect = rotated_leftarm.get_rect(center=(800 // 2 + 20, 600 // 2 - 18))
+        screen.blit(rotated_leftarm, leftarmrect)
+    
+    button.draw(screen)
+    pygame.display.flip() 
+    clock.tick(60) 
+    
+pygame.quit()
