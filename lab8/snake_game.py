@@ -98,6 +98,11 @@ def start ():
         if snake_pos[0] < 10 or snake_pos[0] > 480 or snake_pos[1] < 110 or snake_pos[1] > 580: # Проверка на соприкосновение со стеной
             return True
 
+
+
+
+
+
         snake_body.insert (0, list (snake_pos))
 
         if collide_apple (apple_pos, cell_size, snake_pos):

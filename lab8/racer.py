@@ -77,7 +77,7 @@ class Coin(pygame.sprite.Sprite):
         if (self.rect.top > 600):
             self.create ()
         if pygame.sprite.collide_rect(P1, self):
-            pygame.mixer.Sound(f'labs\\lab8\\assets\\sound\\money{self.current_type + 1}.mp3').play()
+            pygame.mixer.Sound('labs\\lab8\\assets\\sound\\money3.mp3').play()
             COINS += COIN_TYPES[self.current_type][2]
             self.create ()
             self.rect.top = 0
