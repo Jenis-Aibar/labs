@@ -1,0 +1,83 @@
+1.
+----------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION search_phonebook(pattern TEXT)
+RETURNS TABLE(id BIGINT, firstname VARCHAR, lastname VARCHAR, contact VARCHAR) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, firstname, lastname, contact
+    FROM mainData
+    WHERE firstname ILIKE '%' || pattern || '%' 
+       OR lastname ILIKE '%' || pattern || '%'
+       OR contact LIKE '%' || pattern || '%';
+END;
+$$ LANGUAGE plpgsql;
+
+----------------------------------------------------------------------------------
+
+2.
+----------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE insert_or_update_user(p_firstname VARCHAR, p_lastname VARCHAR, p_contact VARCHAR)
+AS $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM mainData WHERE firstname = p_firstname AND lastname = p_lastname) THEN
+        UPDATE mainData SET contact = p_contact WHERE firstname = p_firstname AND lastname = p_lastname;
+    ELSE
+        INSERT INTO mainData(firstname, lastname, contact) VALUES (p_firstname, p_lastname, p_contact);
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+----------------------------------------------------------------------------------
+
+3.
+----------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE insert_multiple_users(p_users TEXT[])
+AS $$
+DECLARE
+    p_user RECORD;
+    invalid_users TEXT[] := '{}';
+BEGIN
+    FOREACH p_user IN ARRAY p_users
+    LOOP
+        IF p_user.contact ~ '^87[0-9]{9}$' THEN
+            INSERT INTO mainData(firstname, lastname, contact) VALUES (p_user.firstname, p_user.lastname, p_user.contact);
+        ELSE
+            invalid_users := array_append(invalid_users, p_user.firstname || ' ' || p_user.lastname || ' - ' || p_user.contact);
+        END IF;
+    END LOOP;
+
+    IF array_length(invalid_users, 1) > 0 THEN
+        RAISE NOTICE 'Invalid users: %', invalid_users;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+----------------------------------------------------------------------------------
+
+4.
+----------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION get_phonebook_paginated(p_limit INT, p_offset INT)
+RETURNS TABLE(id BIGINT, firstname VARCHAR, lastname VARCHAR, contact VARCHAR) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, firstname, lastname, contact
+    FROM mainData
+    LIMIT p_limit OFFSET p_offset;
+END;
+$$ LANGUAGE plpgsql;
+----------------------------------------------------------------------------------
+
+5.
+----------------------------------------------------------------------------------
+CREATE OR REPLACE PROCEDURE delete_user(p_firstname VARCHAR, p_lastname VARCHAR, p_contact VARCHAR)
+AS $$
+BEGIN
+    IF p_firstname IS NOT NULL AND p_lastname IS NOT NULL THEN
+        DELETE FROM mainData WHERE firstname = p_firstname AND lastname = p_lastname;
+    END IF;
+
+    IF p_contact IS NOT NULL THEN
+        DELETE FROM mainData WHERE contact = p_contact;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+----------------------------------------------------------------------------------
