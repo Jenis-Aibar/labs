@@ -1,0 +1,58 @@
+CREATE DATABASE phonebook;
+\c phonebook;
+
+1.
+-------------------------------------------
+CREATE TABLE mainData (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR (45) NOT NULL,
+    contact VARCHAR (15) UNIQUE NOT NULL
+);
+
+\d mainData;
+-------------------------------------------
+2.
+-------------------------------------------
+a)
+
+\copy mainData (name, contact)
+FROM '/absolute/path/to/contacts.csv'
+DELIMITER ','
+CSV HEADER;
+
+b)
+
+INSERT INTO mainData (name, contact) VALUES
+('Диас', '87000561245'),
+('Сакен', '87477893321'),
+('Айбар', '87781584338');
+-------------------------------------------
+3.
+-------------------------------------------
+UPDATE mainData
+SET contact = '87781584337'
+WHERE name = 'Айбар';
+-------------------------------------------
+4.
+-------------------------------------------
+//All
+
+SELECT * FROM mainData;
+
+// Name and contact from name
+	
+SELECT name, contact FROM mainData WHERE name LIKE 'A%' or name LIKE 'a%';
+
+// Name and contact from contact
+
+SELECT name, contact FROM mainData WHERE contact LIKE '_747%';     // Activ)
+
+// Interval [a, b] // a, b is integer
+
+SELECT * FROM mainData WHERE id >= a AND id <= b;
+-------------------------------------------
+5.
+-------------------------------------------
+DELETE FROM mainData
+WHERE contact = '87781584337';
+-------------------------------------------
